@@ -1,10 +1,8 @@
 ---
 import LinkButton from "@/components/LinkButton.astro";
-import { tplStr, useTranslations } from "@/i18n";
 import config from "@/config";
 
 const { shareLinks } = config;
-const t = useTranslations(Astro.currentLocale);
 
 const icons = import.meta.glob<{
   default: (_props: Record<string, unknown>) => unknown;
@@ -22,8 +20,8 @@ const items = await Promise.all(
     const title =
       linkTitle ??
       (name === "mail"
-        ? t.post.sharePostViaEmail
-        : tplStr(t.post.sharePostOn, { platform: platformLabel(name) }));
+        ? "通过邮件分享本文"
+        : `在 ${platformLabel(name)} 上分享本文`);
     return { url, title, Icon };
   })
 );
@@ -32,7 +30,7 @@ const items = await Promise.all(
 {
   items.some(({ Icon }) => Icon) && (
     <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start">
-      <span class="italic">{t.post.sharePostIntro}</span>
+      <span class="italic">分享本文：</span>
       <div class="text-center">
         {items.map(({ url, title, Icon }) =>
           Icon ? (
