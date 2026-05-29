@@ -1,0 +1,25 @@
+---
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
+export type { IconDefinition };
+
+interface Props {
+  icon: IconDefinition;
+  class?: string;
+  id?: string;
+}
+
+const { icon: iconDef, class: className, id } = Astro.props;
+const [width, height, , , svgPathData] = iconDef.icon;
+const paths = Array.isArray(svgPathData) ? svgPathData : [svgPathData];
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={`0 0 ${width} ${height}`}
+  class={className}
+  id={id}
+  fill="currentColor"
+>
+  {paths.map(d => <path d={d} />)}
+</svg>

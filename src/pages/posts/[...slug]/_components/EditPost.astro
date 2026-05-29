@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import IconEdit from "@/assets/icons/IconEdit.svg";
+import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import FAIcon from "@/components/FAIcon.astro";
 import config from "@/config";
 
 type Props = {
@@ -28,7 +29,7 @@ const showEditPost = editPost.enabled && !hideEditPost && href.trim() !== "";
         className,
       ]}
     >
-      <IconEdit class="inline-block" />
+      <FAIcon icon={faPenToSquare} class="inline-block" />
       <span>编辑页面</span>
     </a>
   )

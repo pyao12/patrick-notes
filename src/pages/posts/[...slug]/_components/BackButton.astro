@@ -1,5 +1,6 @@
 ---
-import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import FAIcon from "@/components/FAIcon.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import config from "@/config";
 ---
@@ -12,7 +13,7 @@ import config from "@/config";
         href="/"
         class="focus-outline hover:text-foreground/75 -ms-2 mt-8 mb-2"
       >
-        <IconChevronLeft class="inline-block size-6 rtl:rotate-180" />
+        <FAIcon icon={faChevronLeft} class="inline-block size-6 rtl:rotate-180" />
         <span>返回</span>
       </LinkButton>
     </div>

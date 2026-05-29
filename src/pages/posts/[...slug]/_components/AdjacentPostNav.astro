@@ -1,6 +1,6 @@
 ---
-import IconArrowLeft from "@/assets/icons/IconArrowLeft.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import FAIcon from "@/components/FAIcon.astro";
 import { getPostUrl } from "@/utils/getPostPaths";
 
 type AdjacentPost = {
@@ -24,7 +24,7 @@ const { prevPost, nextPost } = Astro.props;
         href={getPostUrl(prevPost.id, prevPost.filePath)}
         class="flex w-full gap-1 hover:opacity-75"
       >
-        <IconArrowLeft class="inline-block flex-none rtl:rotate-180" />
+        <FAIcon icon={faArrowLeft} class="inline-block flex-none rtl:rotate-180" />
         <div>
           <span>上一篇</span>
           <div class="text-accent/85 text-sm">{prevPost.title}</div>
@@ -42,7 +42,7 @@ const { prevPost, nextPost } = Astro.props;
           <span>下一篇</span>
           <div class="text-accent/85 text-sm">{nextPost.title}</div>
         </div>
-        <IconArrowRight class="inline-block flex-none rtl:rotate-180" />
+        <FAIcon icon={faArrowRight} class="inline-block flex-none rtl:rotate-180" />
       </a>
     )
   }

@@ -63,8 +63,8 @@ interface FeaturesConfig {
 
 interface SocialLink {
   /**
-   * Must match an SVG filename in src/assets/icons/socials/.
-   * e.g. "github" → src/assets/icons/socials/github.svg
+   * Must match a key in the Font Awesome social icon map (src/utils/iconMap.ts).
+   * e.g. "github", "mail", "x"
    */
   name: string;
   url: string;
@@ -78,8 +78,8 @@ interface SocialLink {
 
 interface ShareLink {
   /**
-   * Must match an SVG filename in src/assets/icons/socials/.
-   * e.g. "facebook" → src/assets/icons/socials/facebook.svg
+   * Must match a key in the Font Awesome social icon map (src/utils/iconMap.ts).
+   * e.g. "facebook", "x", "telegram"
    */
   name: string;
   /** Base share URL. The post URL will be appended as a query param. */

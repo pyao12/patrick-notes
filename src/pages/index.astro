@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import FAIcon from "@/components/FAIcon.astro";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -64,7 +65,7 @@ const homePath = "/";
           <h2 class="text-2xl font-semibold tracking-wide">
             精选
           </h2>
-          <ul>
+          <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {featuredPosts.map(data => (
               <Card variant="h3" {...data} />
             ))}
@@ -79,7 +80,7 @@ const homePath = "/";
           <h2 class="text-2xl font-semibold tracking-wide">
             近期文章
           </h2>
-          <ul>
+          <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {recentPosts.slice(0, postsConfig.perIndex).map(data => (
               <Card variant="h3" {...data} />
             ))}
@@ -88,10 +89,10 @@ const homePath = "/";
       )
     }
 
-    <div class="my-8 text-center">
+    <div class="my-1 text-center">
       <LinkButton href="/posts">
         全部文章
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
+        <FAIcon icon={faArrowRight} class="inline-block rtl:-rotate-180" />
       </LinkButton>
     </div>
   </main>
