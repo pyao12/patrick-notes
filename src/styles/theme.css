@@ -7,7 +7,7 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: Consolas, "Courier New", monospace;
+  --font-app: "LXGW WenKai Light", Consolas, "Courier New", monospace;
 }
 
 /* Light theme values */
