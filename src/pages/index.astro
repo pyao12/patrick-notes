@@ -21,91 +21,97 @@ const homePath = "/";
 ---
 
 <Layout>
-  <Header />
-  <main
-    id="main-content"
-    data-layout="index"
-    data-home-path={homePath}
-    class="app-layout"
-  >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Patrick的笔记
-      </h1>
-      <p class="mt-2">
-        开始你的阅读吧！或者打开
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/pyao12/patrick-notes"
-        >
-          pyao12/patrick-notes
-        </LinkButton> 查看源码
-      </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              社交链接：
-            </div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            精选
-          </h2>
-          <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
+    <Header />
+    <main
+        id="main-content"
+        data-layout="index"
+        data-home-path={homePath}
+        class="app-layout"
+    >
+        <section id="hero" class="border-border border-b pt-8 pb-6">
+            <h1
+                class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl"
+            >
+                Patrick的笔记
+            </h1>
+            <p class="mt-2">
+                开始你的阅读吧！或者打开
+                <LinkButton
+                    class="hover:text-accent underline decoration-dashed underline-offset-4"
+                    href="https://github.com/pyao12/patrick-notes"
+                >
+                    pyao12/patrick-notes
+                </LinkButton> 查看源码
+            </p>
+            {
+                socials.length > 0 && (
+                    <div class="mt-4 flex max-sm:flex-col sm:items-center">
+                        <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
+                            社交链接：
+                        </div>
+                        <Socials />
+                    </div>
+                )
+            }
         </section>
-      )
-    }
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            近期文章
-          </h2>
-          <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+        {
+            featuredPosts.length > 0 && (
+                <section
+                    id="featured"
+                    class:list={[
+                        "pt-12 pb-6",
+                        { "border-border border-b": recentPosts.length > 0 },
+                    ]}
+                >
+                    <h2 class="text-2xl font-semibold tracking-wide">精选</h2>
+                    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        {featuredPosts.map(data => (
+                            <Card variant="h3" {...data} />
+                        ))}
+                    </ul>
+                </section>
+            )
+        }
 
-    <div class="my-1 text-center">
-      <LinkButton href="/posts">
-        全部文章
-        <FAIcon icon={faArrowRight} class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
-  </main>
-  <Footer />
+        {
+            recentPosts.length > 0 && (
+                <section id="recent-posts" class="pt-12 pb-6">
+                    <h2 class="text-2xl font-semibold tracking-wide">
+                        近期文章
+                    </h2>
+                    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        {recentPosts
+                            .slice(0, postsConfig.perIndex)
+                            .map(data => (
+                                <Card variant="h3" {...data} />
+                            ))}
+                    </ul>
+                </section>
+            )
+        }
+
+        <div class="my-1 text-center">
+            <LinkButton href="/posts">
+                全部文章
+                <FAIcon
+                    icon={faArrowRight}
+                    class="inline-block rtl:-rotate-180"
+                />
+            </LinkButton>
+        </div>
+    </main>
+    <Footer />
 </Layout>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset;
-    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-    if (indexLayout?.layout) {
-      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
-    }
-  });
+    document.addEventListener("astro:page-load", () => {
+        const indexLayout = (
+            document.querySelector("#main-content") as HTMLElement
+        )?.dataset;
+        const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+        if (indexLayout?.layout) {
+            sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+        }
+    });
 </script>

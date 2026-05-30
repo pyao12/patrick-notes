@@ -4,46 +4,52 @@ import FAIcon from "@/components/FAIcon.astro";
 import { getPostUrl } from "@/utils/getPostPaths";
 
 type AdjacentPost = {
-  id: string;
-  title: string;
-  filePath: string | undefined;
+    id: string;
+    title: string;
+    filePath: string | undefined;
 } | null;
 
 type Props = {
-  prevPost: AdjacentPost;
-  nextPost: AdjacentPost;
+    prevPost: AdjacentPost;
+    nextPost: AdjacentPost;
 };
 
 const { prevPost, nextPost } = Astro.props;
 ---
 
 <div data-pagefind-ignore class="my-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-  {
-    prevPost && (
-      <a
-        href={getPostUrl(prevPost.id, prevPost.filePath)}
-        class="flex w-full gap-1 hover:opacity-75"
-      >
-        <FAIcon icon={faArrowLeft} class="inline-block flex-none rtl:rotate-180" />
-        <div>
-          <span>上一篇</span>
-          <div class="text-accent/85 text-sm">{prevPost.title}</div>
-        </div>
-      </a>
-    )
-  }
-  {
-    nextPost && (
-      <a
-        href={getPostUrl(nextPost.id, nextPost.filePath)}
-        class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
-      >
-        <div>
-          <span>下一篇</span>
-          <div class="text-accent/85 text-sm">{nextPost.title}</div>
-        </div>
-        <FAIcon icon={faArrowRight} class="inline-block flex-none rtl:rotate-180" />
-      </a>
-    )
-  }
+    {
+        prevPost && (
+            <a
+                href={getPostUrl(prevPost.id, prevPost.filePath)}
+                class="flex w-full gap-1 hover:opacity-75"
+            >
+                <FAIcon
+                    icon={faArrowLeft}
+                    class="inline-block flex-none rtl:rotate-180"
+                />
+                <div>
+                    <span>上一篇</span>
+                    <div class="text-accent/85 text-sm">{prevPost.title}</div>
+                </div>
+            </a>
+        )
+    }
+    {
+        nextPost && (
+            <a
+                href={getPostUrl(nextPost.id, nextPost.filePath)}
+                class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
+            >
+                <div>
+                    <span>下一篇</span>
+                    <div class="text-accent/85 text-sm">{nextPost.title}</div>
+                </div>
+                <FAIcon
+                    icon={faArrowRight}
+                    class="inline-block flex-none rtl:rotate-180"
+                />
+            </a>
+        )
+    }
 </div>

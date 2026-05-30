@@ -14,15 +14,15 @@ const tags = getUniqueTags(posts);
 ---
 
 <Layout title={`标签 | ${config.site.title}`}>
-  <Header />
+    <Header />
 
-  <Breadcrumb />
+    <Breadcrumb />
 
-  <Main pageTitle="标签" pageDesc="文章中使用的所有标签。">
-    <ul class="flex flex-wrap gap-6">
-      {tags.map(({ tag, tagName }) => <Tag {tag} {tagName} />)}
-    </ul>
-  </Main>
+    <Main pageTitle="标签" pageDesc="文章中使用的所有标签。">
+        <ul class="flex flex-wrap gap-6">
+            {tags.map(({ tag, tagName }) => <Tag {tag} {tagName} />)}
+        </ul>
+    </Main>
 
-  <Footer />
+    <Footer />
 </Layout>

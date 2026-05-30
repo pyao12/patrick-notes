@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "astro/types";
 import Socials from "./Socials.astro";
 
 type Props = {
-  noMarginTop?: boolean;
+    noMarginTop?: boolean;
 } & HTMLAttributes<"footer">;
 
 const { noMarginTop = false, class: className, ...attrs } = Astro.props;
@@ -12,17 +12,19 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer
-  class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
-  {...attrs}
+    class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
+    {...attrs}
 >
-  <div
-    class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
-  >
-    <Socials />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>版权所有 &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>保留所有权利。</span>
+    <div
+        class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
+    >
+        <Socials />
+        <div
+            class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"
+        >
+            <span>版权所有 &#169; {currentYear}</span>
+            <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
+            <span>保留所有权利。</span>
+        </div>
     </div>
-  </div>
 </footer>

@@ -5,9 +5,9 @@ import FAIcon from "@/components/FAIcon.astro";
 import config from "@/config";
 
 type Props = {
-  hideEditPost?: CollectionEntry<"posts">["data"]["hideEditPost"];
-  class?: string;
-  post: CollectionEntry<"posts">;
+    hideEditPost?: CollectionEntry<"posts">["data"]["hideEditPost"];
+    class?: string;
+    post: CollectionEntry<"posts">;
 };
 
 const { hideEditPost, post, class: className = "" } = Astro.props;
@@ -15,22 +15,21 @@ const { hideEditPost, post, class: className = "" } = Astro.props;
 const editPost = config.features.editPost;
 const href = editPost.enabled ? `${editPost.url}${post.filePath}` : "";
 const showEditPost = editPost.enabled && !hideEditPost && href.trim() !== "";
-
 ---
 
 {
-  showEditPost && (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      class:list={[
-        "hover:text-accent text-muted-foreground flex justify-baseline gap-1.5",
-        className,
-      ]}
-    >
-      <FAIcon icon={faPenToSquare} class="inline-block" />
-      <span>编辑页面</span>
-    </a>
-  )
+    showEditPost && (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+                "hover:text-accent text-muted-foreground flex justify-baseline gap-1.5",
+                className,
+            ]}
+        >
+            <FAIcon icon={faPenToSquare} class="inline-block" />
+            <span>编辑页面</span>
+        </a>
+    )
 }

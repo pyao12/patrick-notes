@@ -5,7 +5,7 @@ import { slugifyStr } from "@/utils/slugify";
 import Datetime from "./Datetime.astro";
 
 type Props = {
-  variant?: "h2" | "h3";
+    variant?: "h2" | "h3";
 } & CollectionEntry<"posts">;
 
 const { variant: Heading = "h2", id, data, filePath } = Astro.props;
@@ -14,18 +14,18 @@ const { title, description, ...props } = data;
 ---
 
 <li>
-  <a
-    href={getPostUrl(id, filePath)}
-    class:list={[
-      "text-accent inline-block text-lg font-medium",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
-  >
-    <Heading transition:name={slugifyStr(title.replaceAll(".", "-"))}>
-      {title}
-    </Heading>
-  </a>
-  <Datetime {...props} />
-  <p>{description}</p>
+    <a
+        href={getPostUrl(id, filePath)}
+        class:list={[
+            "text-accent inline-block text-lg font-medium",
+            "decoration-dashed underline-offset-4 hover:underline",
+            "focus-visible:no-underline focus-visible:underline-offset-0",
+        ]}
+    >
+        <Heading transition:name={slugifyStr(title.replaceAll(".", "-"))}>
+            {title}
+        </Heading>
+    </a>
+    <Datetime {...props} />
+    <p>{description}</p>
 </li>

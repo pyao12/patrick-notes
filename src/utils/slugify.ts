@@ -9,10 +9,10 @@ const hasNonLatin = (str: string): boolean => /[^\x00-\x7F]/.test(str);
  * - Strings with non-Latin chars: lodash.kebabcase (preserves non-Latin chars)
  */
 export const slugifyStr = (str: string): string => {
-  if (hasNonLatin(str)) {
-    return kebabcase(str);
-  }
-  return slugify(str, { lower: true });
+    if (hasNonLatin(str)) {
+        return kebabcase(str);
+    }
+    return slugify(str, { lower: true });
 };
 
 export const slugifyAll = (arr: string[]) => arr.map(str => slugifyStr(str));

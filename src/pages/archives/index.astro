@@ -12,7 +12,7 @@ import config from "@/config";
 
 // Redirect to 404 page if `showArchives` config is false
 if (!config.features.showArchives) {
-  return Astro.rewrite("/404");
+    return Astro.rewrite("/404");
 }
 
 const posts = await getCollection("posts");
@@ -21,62 +21,75 @@ const monthFormatter = new Intl.DateTimeFormat("zh-CN", { month: "long" });
 ---
 
 <Layout title={`归档 | ${config.site.title}`}>
-  <Header />
+    <Header />
 
-  <Breadcrumb />
+    <Breadcrumb />
 
-  <Main pageTitle="归档" pageDesc="我归档的所有文章。">
-    {
-      Object.entries(
-        getPostsByGroupCondition(filteredPosts, post =>
-          post.data.pubDatetime.getFullYear()
-        )
-      )
-        .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-        .map(([year, yearGroup]) => (
-          <div>
-            <span class="text-2xl font-bold">{year}</span>
-            <sup class="text-muted-foreground text-sm">{yearGroup.length}</sup>
-            {Object.entries(
-              getPostsByGroupCondition(
-                yearGroup,
-                post => post.data.pubDatetime.getMonth() + 1
-              )
+    <Main pageTitle="归档" pageDesc="我归档的所有文章。">
+        {
+            Object.entries(
+                getPostsByGroupCondition(filteredPosts, post =>
+                    post.data.pubDatetime.getFullYear()
+                )
             )
-              .sort(([monthA], [monthB]) => Number(monthB) - Number(monthA))
-              .map(([month, monthGroup]) => (
-                <div class="flex flex-col sm:flex-row">
-                  <div class="mt-6 min-w-36 text-lg sm:my-6">
-                    <span class="font-bold">
-                      {monthFormatter.format(
-                        new Date(2000, Number(month) - 1, 1)
-                      )}
-                    </span>
-                    <sup class="text-muted-foreground text-xs">
-                      {monthGroup.length}
-                    </sup>
-                  </div>
-                  <ul class="space-y-6">
-                    {monthGroup
-                      .sort(
-                        (a, b) =>
-                          Math.floor(
-                            new Date(b.data.pubDatetime).getTime() / 1000
-                          ) -
-                          Math.floor(
-                            new Date(a.data.pubDatetime).getTime() / 1000
-                          )
-                      )
-                      .map(data => (
-                        <Card {...data} />
-                      ))}
-                  </ul>
-                </div>
-              ))}
-          </div>
-        ))
-    }
-  </Main>
+                .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+                .map(([year, yearGroup]) => (
+                    <div>
+                        <span class="text-2xl font-bold">{year}</span>
+                        <sup class="text-muted-foreground text-sm">
+                            {yearGroup.length}
+                        </sup>
+                        {Object.entries(
+                            getPostsByGroupCondition(
+                                yearGroup,
+                                post => post.data.pubDatetime.getMonth() + 1
+                            )
+                        )
+                            .sort(
+                                ([monthA], [monthB]) =>
+                                    Number(monthB) - Number(monthA)
+                            )
+                            .map(([month, monthGroup]) => (
+                                <div class="flex flex-col sm:flex-row">
+                                    <div class="mt-6 min-w-36 text-lg sm:my-6">
+                                        <span class="font-bold">
+                                            {monthFormatter.format(
+                                                new Date(
+                                                    2000,
+                                                    Number(month) - 1,
+                                                    1
+                                                )
+                                            )}
+                                        </span>
+                                        <sup class="text-muted-foreground text-xs">
+                                            {monthGroup.length}
+                                        </sup>
+                                    </div>
+                                    <ul class="space-y-6">
+                                        {monthGroup
+                                            .sort(
+                                                (a, b) =>
+                                                    Math.floor(
+                                                        new Date(
+                                                            b.data.pubDatetime
+                                                        ).getTime() / 1000
+                                                    ) -
+                                                    Math.floor(
+                                                        new Date(
+                                                            a.data.pubDatetime
+                                                        ).getTime() / 1000
+                                                    )
+                                            )
+                                            .map(data => (
+                                                <Card {...data} />
+                                            ))}
+                                    </ul>
+                                </div>
+                            ))}
+                    </div>
+                ))
+        }
+    </Main>
 
-  <Footer />
+    <Footer />
 </Layout>

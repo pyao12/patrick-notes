@@ -12,25 +12,25 @@ import { getSortedPosts } from "@/utils/getSortedPosts";
 import config from "@/config";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = await getCollection("posts", ({ data }) => !data.draft);
-  return paginate(getSortedPosts(posts), { pageSize: config.posts.perPage });
+    const posts = await getCollection("posts", ({ data }) => !data.draft);
+    return paginate(getSortedPosts(posts), { pageSize: config.posts.perPage });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 ---
 
 <Layout title={`文章 | ${config.site.title}`}>
-  <Header />
+    <Header />
 
-  <Breadcrumb />
+    <Breadcrumb />
 
-  <Main pageTitle="文章" pageDesc="我发表的所有文章。">
-    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {page.data.map(data => <Card {...data} />)}
-    </ul>
-  </Main>
+    <Main pageTitle="文章" pageDesc="我发表的所有文章。">
+        <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {page.data.map(data => <Card {...data} />)}
+        </ul>
+    </Main>
 
-  <Pagination {page} />
+    <Pagination {page} />
 
-  <Footer noMarginTop={page.lastPage > 1} />
+    <Footer noMarginTop={page.lastPage > 1} />
 </Layout>

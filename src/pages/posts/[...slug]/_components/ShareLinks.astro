@@ -9,39 +9,42 @@ const { shareLinks } = config;
 const pageUrl = Astro.url;
 
 const platformLabel = (name: string) =>
-  name.charAt(0).toUpperCase() + name.slice(1);
+    name.charAt(0).toUpperCase() + name.slice(1);
 
 const items = shareLinks.map(({ name, url, linkTitle }) => {
-  const icon = socialIconMap[name];
-  const title =
-    linkTitle ??
-    (name === "mail"
-      ? "通过邮件分享本文"
-      : `在 ${platformLabel(name)} 上分享本文`);
-  return { url, title, icon };
+    const icon = socialIconMap[name];
+    const title =
+        linkTitle ??
+        (name === "mail"
+            ? "通过邮件分享本文"
+            : `在 ${platformLabel(name)} 上分享本文`);
+    return { url, title, icon };
 });
 ---
 
 {
-  items.some(({ icon }) => icon) && (
-    <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start">
-      <span class="italic">分享本文：</span>
-      <div class="text-center">
-        {items.map(({ url, title, icon }) =>
-          icon ? (
-            <LinkButton
-              href={`${url}${pageUrl}`}
-              class="scale-90 p-2 hover:rotate-6 sm:p-1"
-              title={title}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FAIcon icon={icon} class="inline-block size-6 scale-125 opacity-90 sm:scale-110" />
-              <span class="sr-only">{title}</span>
-            </LinkButton>
-          ) : null
-        )}
-      </div>
-    </div>
-  )
+    items.some(({ icon }) => icon) && (
+        <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start">
+            <span class="italic">分享本文：</span>
+            <div class="text-center">
+                {items.map(({ url, title, icon }) =>
+                    icon ? (
+                        <LinkButton
+                            href={`${url}${pageUrl}`}
+                            class="scale-90 p-2 hover:rotate-6 sm:p-1"
+                            title={title}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FAIcon
+                                icon={icon}
+                                class="inline-block size-6 scale-125 opacity-90 sm:scale-110"
+                            />
+                            <span class="sr-only">{title}</span>
+                        </LinkButton>
+                    ) : null
+                )}
+            </div>
+        </div>
+    )
 }

@@ -6,32 +6,35 @@ import config from "@/config";
 ---
 
 {
-  config.features.showBackButton && (
-    <div class="app-layout flex items-center justify-start">
-      <LinkButton
-        id="back-button"
-        href="/"
-        class="focus-outline hover:text-foreground/75 -ms-2 mt-8 mb-2"
-      >
-        <FAIcon icon={faChevronLeft} class="inline-block size-6 rtl:rotate-180" />
-        <span>返回</span>
-      </LinkButton>
-    </div>
-  )
+    config.features.showBackButton && (
+        <div class="app-layout flex items-center justify-start">
+            <LinkButton
+                id="back-button"
+                href="/"
+                class="focus-outline hover:text-foreground/75 -ms-2 mt-8 mb-2"
+            >
+                <FAIcon
+                    icon={faChevronLeft}
+                    class="inline-block size-6 rtl:rotate-180"
+                />
+                <span>返回</span>
+            </LinkButton>
+        </div>
+    )
 }
 
 <script>
-  function updateGoBackUrl() {
-    const backButton: HTMLAnchorElement | null =
-      document.querySelector("#back-button");
+    function updateGoBackUrl() {
+        const backButton: HTMLAnchorElement | null =
+            document.querySelector("#back-button");
 
-    const backUrl = sessionStorage.getItem("backUrl");
+        const backUrl = sessionStorage.getItem("backUrl");
 
-    if (backUrl && backButton) {
-      backButton.href = backUrl;
+        if (backUrl && backButton) {
+            backButton.href = backUrl;
+        }
     }
-  }
 
-  document.addEventListener("astro:page-load", updateGoBackUrl);
-  updateGoBackUrl();
+    document.addEventListener("astro:page-load", updateGoBackUrl);
+    updateGoBackUrl();
 </script>

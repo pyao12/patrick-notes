@@ -7,10 +7,10 @@ const baseRoot = base === "" ? "/" : `${base}/`;
  * Paths that don't start with the locale prefix are returned unchanged.
  */
 export function stripLocale(pathname: string, locale: string): string {
-  const prefix = `/${locale}`;
-  if (pathname === prefix) return "/";
-  if (pathname.startsWith(`${prefix}/`)) return pathname.slice(prefix.length);
-  return pathname;
+    const prefix = `/${locale}`;
+    if (pathname === prefix) return "/";
+    if (pathname.startsWith(`${prefix}/`)) return pathname.slice(prefix.length);
+    return pathname;
 }
 
 /**
@@ -18,17 +18,17 @@ export function stripLocale(pathname: string, locale: string): string {
  * Returns a root-relative pathname.
  */
 export function stripBase(pathname: string): string {
-  if (base === "") {
+    if (base === "") {
+        return pathname;
+    }
+    if (pathname === base) {
+        return "/";
+    }
+    if (pathname.startsWith(baseRoot)) {
+        const stripped = pathname.slice(base.length);
+        return stripped === "" ? "/" : stripped;
+    }
     return pathname;
-  }
-  if (pathname === base) {
-    return "/";
-  }
-  if (pathname.startsWith(baseRoot)) {
-    const stripped = pathname.slice(base.length);
-    return stripped === "" ? "/" : stripped;
-  }
-  return pathname;
 }
 
 /**
@@ -36,11 +36,11 @@ export function stripBase(pathname: string): string {
  * Does not force a trailing slash for empty paths.
  */
 export function getAssetPath(path: string): string {
-  // Strip leading slash to avoid double-slash when concatenating with baseRoot
-  const normalizedPath = path.replace(/^\/+/, "");
+    // Strip leading slash to avoid double-slash when concatenating with baseRoot
+    const normalizedPath = path.replace(/^\/+/, "");
 
-  if (!normalizedPath) {
-    return base === "" ? "/" : base;
-  }
-  return baseRoot + normalizedPath;
+    if (!normalizedPath) {
+        return base === "" ? "/" : base;
+    }
+    return baseRoot + normalizedPath;
 }
